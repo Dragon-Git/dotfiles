@@ -1,0 +1,10 @@
+[Unit]
+Description=Deploy MyProject after successful CI
+After=ci-project.service
+Requires=ci-project.service  # 确保CI成功后才运行
+
+[Service]
+Type=oneshot
+User=deploy_user
+WorkingDirectory=/opt/deploy/myproject
+ExecStart=/usr/local/bin/deploy_myproject.sh
