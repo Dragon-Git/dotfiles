@@ -1,0 +1,9 @@
+[Unit]
+Description=My User Backup Service
+
+[Service]
+Type=oneshot
+ExecStart=/home/username/scripts/backup.sh
+
+[Install]
+WantedBy=default.target
