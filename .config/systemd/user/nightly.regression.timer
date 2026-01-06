@@ -1,0 +1,10 @@
+[Unit]
+Description=Trigger Nightly Regression at 2 AM daily
+
+[Timer]
+OnCalendar=*-*-* 02:00:00
+Persistent=true
+Unit=run.verification.service
+
+[Install]
+WantedBy=timers.target
