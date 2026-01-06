@@ -1,0 +1,28 @@
+[Unit]
+Description=CI Pipeline for MyProject
+After=network.target
+
+[Service]
+Type=oneshot
+User=ci_runner  # 强烈建议使用非root的专用用户
+Group=ci_runner
+WorkingDirectory=/opt/ci_workspace/project
+
+# 关键：传递Git仓库路径等信息
+Environment=REPO_PATH=/opt/git/myproject.git
+Environment=WORKSPACE=/opt/ci_workspace/myproject
+Environment=BRANCH=main
+
+# 执行CI脚本
+ExecStart=/usr/local/bin/run_ci_for_myproject.sh
+
+# 成功后才触发部署（可选）
+ExecStartPost=/usr/bin/systemctl start deploy-myproject.service
+
+# 资源限制，防止任务失控
+MemoryMax=4G
+CPUQuota=200%
+
+# 日志设置
+StandardOutput=journal
+StandardError=journal
