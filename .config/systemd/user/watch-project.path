@@ -1,0 +1,9 @@
+[Unit]
+Description=Watch Git repo project for pushes
+
+[Path]
+PathChanged=/opt/git/project.git/refs/heads/
+Unit=ci-project.service
+
+[Install]
+WantedBy=multi-user.target
