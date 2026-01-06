@@ -17,7 +17,7 @@ Environment=BRANCH=main
 ExecStart=/usr/local/bin/run_ci_for_myproject.sh
 
 # 成功后才触发部署（可选）
-ExecStartPost=/usr/bin/systemctl start deploy-myproject.service
+ExecStartPost=/usr/bin/systemctl start deploy-project.service
 
 # 资源限制，防止任务失控
 MemoryMax=4G
